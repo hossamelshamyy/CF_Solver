@@ -34,8 +34,9 @@ def compile_code(path):
 
 def run_code(path):
     for i in range(len(allInputs)):
+        plainInputs[i] = plainInputs[i].encode('ascii', 'ignore').decode('ascii')
         p = run([path.replace('.cpp', '')], stdout=PIPE,
-                input=plainInputs[i], encoding='ascii')
+                input=plainInputs[i], encoding='unicode_escape')
         returnCodes.append(p.returncode)
         results.append(p.stdout)
 
